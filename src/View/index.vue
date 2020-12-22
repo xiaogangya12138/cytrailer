@@ -3,6 +3,7 @@
   <div>
       <h3>主页面</h3>
       <div>
+          <div class="sty">123</div>
           <span>没什么就是创建一个gti分支 并合并</span>
       </div>
   </div>
@@ -20,5 +21,9 @@ export default {
 
 </script>
 <style  scoped>
-
+.sty{
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+}
 </style>

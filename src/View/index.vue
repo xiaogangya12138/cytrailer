@@ -2,6 +2,9 @@
 <template>
   <div>
       <h3>主页面</h3>
+      <div>
+        <van-button type="primary">主要按钮</van-button>
+      </div>
   </div> 
 </template>
 

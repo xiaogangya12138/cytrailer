@@ -17,9 +17,5 @@ export default {
 
 </script>
 <style  scoped>
-.sty{
-    width: 100px;
-    height: 100px;
-    background-color: pink;
-}
+
 </style>

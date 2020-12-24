@@ -3,6 +3,22 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 配置组件
+import { Button, Swipe, SwipeItem,Lazyload  } from 'vant';
+
+Vue.use(Lazyload);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+// import 'lib-flexible'
+Vue.use(Button);
+// 导入 ElementUI
+
+// 配置flexible
+import 'lib-flexible/flexible.js'
+// 配置axiso
+import axios from "axios"
+Vue.prototype.axios = axios
+
 
 Vue.config.productionTip = false
 
@@ -10,6 +26,8 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })

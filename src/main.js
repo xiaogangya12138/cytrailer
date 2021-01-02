@@ -4,15 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 // 配置组件
-import { Button, Swipe, SwipeItem,Lazyload  } from 'vant';
-
+import { Button, Swipe, SwipeItem,Lazyload, Icon } from 'vant';
+// vant 组件
 Vue.use(Lazyload);
 Vue.use(Swipe);
 Vue.use(SwipeItem);
-// import 'lib-flexible'
 Vue.use(Button);
-// 导入 ElementUI
-
+Vue.use(Icon)
 // 配置flexible
 import 'lib-flexible/flexible.js'
 // 配置axiso

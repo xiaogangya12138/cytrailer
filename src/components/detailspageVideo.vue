@@ -14,6 +14,7 @@
 </template>
 
 <script>
+  import server from '../gtiDataManage/gitDataUrlManage.js'
   export default {
     props: ['videoId', ],
     data() {
@@ -47,16 +48,11 @@
       };
     },
     methods: {
-      //  "https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&qq=2478029182";
       getData() {
-        let url = "https://www.imovietrailer.com/superhero/index/movie/hot?type=superhero&qq=2478029182";
-        this.axios.post(url).then(({
-          data,
-          state
-        }) => {
-          for (let i = 0; i < data.data.length; i++) {
-            if (this.videoId == data.data[i].id) {
-              this.videoData = data.data[i]
+        server.gitHotTrailerData().then((item)=>{
+            for (let i = 0; i < item.length; i++) {
+            if (this.videoId == item[i].id) {
+              this.videoData = item[i]
               this.playerOptions['sources'][0]['src'] = this.videoData.trailer;
               this.playerOptions['poster'] = this.videoData.poster;
             }
@@ -106,5 +102,4 @@
   .van-nav-bar .van-icon {
     color: #fff;
   }
-
 </style>

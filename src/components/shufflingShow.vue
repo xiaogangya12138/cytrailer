@@ -92,6 +92,7 @@
   .shuffling_Show {
     /* position: fixed; */
     width: 100%;
+    height: 4.525rem;
     margin-top: 0.04rem;
     white-space: nowrap;
     overflow-y: scroll;

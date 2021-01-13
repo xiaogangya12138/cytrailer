@@ -1,15 +1,31 @@
 <!-- 详情页面的视频组件 -->
 <template>
   <div>
+    <!-- 导航 -->
     <div>
       <van-nav-bar left-arrow @click-left="onClickLeft" />
     </div>
+    <!-- 视频播放 -->
     <div>
       <video-player class="video-player vjs-custom-skin" ref="videoPlayer" :playsinline="true" :options="playerOptions">
       </video-player>
+    </div>
+    <!-- 简述 -->
+    <div>
 
     </div>
+    <!-- 剧情介绍 -->
+    <div>
 
+    </div>
+    <!-- 演职列表 -->
+    <div>
+      
+    </div>
+    <!-- 剧照 -->
+    <div>
+
+    </div>
   </div>
 </template>
 
@@ -43,22 +59,20 @@
             fullscreenToggle: true //全屏按钮
           }
         },
-
         videoData: '',
       };
     },
     methods: {
-      getData() {
-        server.gitHotTrailerData().then((item)=>{
-            for (let i = 0; i < item.length; i++) {
-            if (this.videoId == item[i].id) {
-              this.videoData = item[i]
-              this.playerOptions['sources'][0]['src'] = this.videoData.trailer;
-              this.playerOptions['poster'] = this.videoData.poster;
-            }
-          }
+      getVideoData() {
+        server.gitDetailsData(this.videoId).then((data) => {
+          // /search/trailer/{trailerId}?qq2478029182
+          console.log(this.videoId);
+          this.videoData = data.data;
+          this.playerOptions['sources'][0]['src'] = this.videoData.trailer;
+          this.playerOptions['poster'] = this.videoData.poster;
         })
       },
+
       // 返回上一层
       onClickLeft() {
         this.$router.go(-1);
@@ -73,9 +87,8 @@
         })
       }
     },
-
     mounted() {
-      this.getData();
+      this.getVideoData();
     },
 
   }
@@ -94,7 +107,8 @@
   .van-nav-bar__arrow {
     font-size: .525rem;
   }
-  .van-nav-bar__content{
+
+  .van-nav-bar__content {
     background-color: black;
     height: .825rem;
   }
@@ -102,4 +116,5 @@
   .van-nav-bar .van-icon {
     color: #fff;
   }
+
 </style>

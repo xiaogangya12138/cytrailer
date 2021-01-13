@@ -46,16 +46,17 @@ function gitshufflingDataImges() {
   })
 }
 
-function gitHotTrailerData() {
+function gitHotTrailerData() { ///index/movie/hot?type=superhero&qq=2478029182 热门预告
   // 返回 Promise 数据
   return new Promise((resolve, reject) => {
     request({
-      url: "index/movie/hot?type=superhero&qq=2478029182",
+      url: '/index/movie/hot?type=superhero&qq=2478029182',
       method: 'post'
     }).then(({
       data,
       status
     }) => {
+      // resolve(data);
       let isStatus = status == 200;
       const hotTrailer = data.data;
       let isArray = Array.isArray(hotTrailer);
@@ -70,8 +71,59 @@ function gitHotTrailerData() {
   })
 }
 
+function gitDetailsData(videoId) {
+  return new Promise((resolve, reject) => {
+    request({
+      // url: '/search/trailer/' + id + '?qq2478029182',
+      url: '/search/trailer/' + videoId + '?qq=2478029182',
+      method: 'post'
+    }).then(({
+      data,
+      status
+    }) => {
+      const getailsData = data;
+      if (status == 200) {
+          resolve(getailsData)
+      }
+      reject(false);
+    })
+  });
+}
+
+// 猜你喜欢
+// /index/guessULike
+// "https://www.imovietrailer.com/superhero/index/guessULike?qq=2478029182"
+function gitShowSimpleDate() {
+  return new Promise((resolve, reject) => {
+    request({
+      url: "/index/guessULike?qq=2478029182",
+      method: "post"
+    }).then(({
+      data,
+      status
+    }) => {
+      let isStatus = status == 200;
+      let showData = data.data;
+      let array = Array.isArray(showData);
+      if (isStatus && array) {
+        showData.forEach((item) => {
+          resolve(showData);
+          return
+        });
+      }
+      reject(false);
+    })
+  })
+}
+
+function xiangqing(id) {
+  return id
+}
 // 导入封装的函数
 export default {
   gitshufflingDataImges,
   gitHotTrailerData,
+  gitShowSimpleDate,
+  xiangqing,
+  gitDetailsData,
 }

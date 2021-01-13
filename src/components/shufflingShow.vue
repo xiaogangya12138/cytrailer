@@ -4,7 +4,7 @@
     <div style="height: 6.05rem">
       <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(item, index) in shuffling" :key="index">
-          <img style="width: 100%" v-lazy="item.image" @click="pushDetails(index)" />
+          <img style="width: 100%" v-lazy="item.image" @click="pushDetailsHow(index)" />
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -47,23 +47,32 @@
       gitshufflingData() {
         server.gitshufflingDataImges().then(res => {
           this.shuffling = res
+          // console.log(this.shuffling);
+         
         })
+       
       },
       // 热门超英
       gitShowData() {
         server.gitHotTrailerData().then((res) => {
           this.chris = res;
+          // console.log(123);
+
+          // 评分赋值的问题
           //评分处理
           for (let i = 0; i < this.chris.length; i++) {
             this.score = parseFloat(this.chris[i].score) / 2;
           }
         })
       },
-      // 点击跳转到详情页
+      // 点击跳转到详情页 热门超英
       pushDetails(index) {
         // 携带id 进行跳转
         this.$router.push('/details/' + this.chris[index].id)
-
+      },
+      // 轮播图的id 是 movieId 和展示的热门超英的不同 id
+      pushDetailsHow(index){
+        this.$router.push('/details/' + this.shuffling[index].movieId)
       }
     },
     mounted() {

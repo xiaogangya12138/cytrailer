@@ -12,7 +12,7 @@
 </div>
 <div>
   <!-- 简介展示 -->
-  <!-- <showSimple></showSimple> -->
+  <showSimple></showSimple>
 </div>
   </div>
 </template>
